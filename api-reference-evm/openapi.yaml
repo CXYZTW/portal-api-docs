@@ -1,13 +1,17 @@
 openapi: 3.1.0
 info:
   title: SQD Network Portal API - EVM Dataset Endpoints
-  description: API endpoints for interacting with EVM datasets under the SQD Network Portal, specifically for the Ethereum Mainnet dataset.
+  description: API endpoints for interacting with EVM datasets under the SQD Network Portal. By default, examples use the Ethereum Mainnet dataset, but you can switch to any other dataset available from GET /datasets.
   version: 1.0.0
 servers:
   - url: https://portal.sqd.dev
     description: SQD Portal API base URL
-  - url: https://portal.sqd.dev/datasets/ethereum-mainnet
-    description: SQD Portal's endpoint for Ethereum Mainnet dataset
+  - url: https://portal.sqd.dev/datasets/{dataset}
+    description: SQD Portal's endpoint for specific dataset
+    variables:
+      dataset:
+        default: ethereum-mainnet
+        description: The dataset to use. Get available options from GET /datasets endpoint.
 paths:
   /datasets:
     get:
@@ -43,8 +47,12 @@ paths:
   /metadata:
     get:
       servers:
-        - url: https://portal.sqd.dev/datasets/ethereum-mainnet
-          description: SQD Portal's endpoint for Ethereum Mainnet dataset
+        - url: https://portal.sqd.dev/datasets/{dataset}
+          description: SQD Portal's endpoint for specific dataset
+          variables:
+            dataset:
+              default: ethereum-mainnet
+              description: The dataset to use. Get available options from GET /datasets endpoint.
       description: Retrieves metadata describing the dataset, including its name, aliases, start block, and real-time status.
       responses:
         '200':
@@ -56,8 +64,12 @@ paths:
   /state:
     get:
       servers:
-        - url: https://portal.sqd.dev/datasets/ethereum-mainnet
-          description: SQD Portal's endpoint for Ethereum Mainnet dataset
+        - url: https://portal.sqd.dev/datasets/{dataset}
+          description: SQD Portal's endpoint for specific dataset
+          variables:
+            dataset:
+              default: ethereum-mainnet
+              description: The dataset to use. Get available options from GET /datasets endpoint.
       description: Provides a summary of stored block ranges for the dataset. Useful for displaying network status.
       responses:
         '200':
@@ -69,8 +81,12 @@ paths:
   /stream:
     post:
       servers:
-        - url: https://portal.sqd.dev/datasets/ethereum-mainnet
-          description: SQD Portal's endpoint for Ethereum Mainnet dataset
+        - url: https://portal.sqd.dev/datasets/{dataset}
+          description: SQD Portal's endpoint for specific dataset
+          variables:
+            dataset:
+              default: ethereum-mainnet
+              description: The dataset to use. Get available options from GET /datasets endpoint.
       description: >
         Streams a list of blocks matching the provided data query, potentially including real-time data. Required request headers: `Content-Type: application/json`; optional request headers: `Accept-Encoding: gzip`, `Content-Encoding: gzip`.
       requestBody:
@@ -169,8 +185,12 @@ paths:
   /finalized-stream:
     post:
       servers:
-        - url: https://portal.sqd.dev/datasets/ethereum-mainnet
-          description: SQD Portal's endpoint for Ethereum Mainnet dataset
+        - url: https://portal.sqd.dev/datasets/{dataset}
+          description: SQD Portal's endpoint for specific dataset
+          variables:
+            dataset:
+              default: ethereum-mainnet
+              description: The dataset to use. Get available options from GET /datasets endpoint.
       description: >
         Streams only finalized blocks matching the provided data query. Query structure is identical to that of the /stream endpoint. Required request headers: `Content-Type: application/json`; optional request headers: `Accept-Encoding: gzip`, `Content-Encoding: gzip`.
       requestBody:
@@ -245,8 +265,12 @@ paths:
   /head:
     get:
       servers:
-        - url: https://portal.sqd.dev/datasets/ethereum-mainnet
-          description: SQD Portal's endpoint for Ethereum Mainnet dataset
+        - url: https://portal.sqd.dev/datasets/{dataset}
+          description: SQD Portal's endpoint for specific dataset
+          variables:
+            dataset:
+              default: ethereum-mainnet
+              description: The dataset to use. Get available options from GET /datasets endpoint.
       description: Returns the block number and hash of the highest block available in the dataset, or null if no blocks are available. Takes real-time data into account. Useful for diagnostics.
       responses:
         '200':
@@ -258,8 +282,12 @@ paths:
   /finalized-head:
     get:
       servers:
-        - url: https://portal.sqd.dev/datasets/ethereum-mainnet
-          description: SQD Portal's endpoint for Ethereum Mainnet dataset
+        - url: https://portal.sqd.dev/datasets/{dataset}
+          description: SQD Portal's endpoint for specific dataset
+          variables:
+            dataset:
+              default: ethereum-mainnet
+              description: The dataset to use. Get available options from GET /datasets endpoint.
       description: Returns the block number and hash of the highest finalized block available in the dataset, or null if no blocks are available. Useful for diagnostics.
       responses:
         '200':

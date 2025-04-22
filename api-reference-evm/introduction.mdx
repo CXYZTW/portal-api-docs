@@ -2,7 +2,32 @@
 title: "Introduction"
 ---
 
+The SQD Network Portal API provides access to various blockchain datasets. Each dataset is accessible through a set of endpoints under `/datasets/{dataset-name}/`.
+
+## Getting Started
+
+1. First, list available datasets using the [GET /datasets](/api-reference-evm/endpoint/get-datasets) endpoint:
+
+```bash
+curl https://portal.sqd.dev/datasets
+```
+
+2. Choose a dataset from the response (e.g., `ethereum-mainnet`, `solana-mainnet`).
+
+3. Access dataset-specific endpoints by replacing `{dataset}` in the URL with your chosen dataset name:
+
+```bash
+# Get metadata for ethereum-mainnet
+curl https://portal.sqd.dev/datasets/ethereum-mainnet/metadata
+
+# Get latest block for base-mainnet
+curl https://portal.sqd.dev/datasets/base-mainnet/head
+```
+
+## Data Streaming
+
 Request the data you need by [POSTing to `/stream`](/api-reference-evm/endpoint/post-stream) and you shall receive a stream of newline-separated JSON objects that package your data by block. For example
+
 ```bash
 curl https://portal.sqd.dev/datasets/ethereum-mainnet/stream \
   -X POST \
@@ -21,17 +46,21 @@ curl https://portal.sqd.dev/datasets/ethereum-mainnet/stream \
     ]
   }'
 ```
+
 outputs
+
 ```jsonl
 {"header":{"number":16000000}}
 {"header":{"number":16000001},"logs":[{"data":"0x000000000000000000000000000000000000000000000000000000000000071e"}]}
 ```
+
 Here, we requested all records on logs emitted by the WBTC contract, with a bare minimum of fields. One such record was found for block 16000001. There were no records of such instructions being executed in block 16000000, but the block was included anyway to indicate the range boundary.
 
 By using this general approach, you can
- - Get data on logs, transactions, traces and storage state diffs.
- - Ensure that you only get the data you need by using a rich palette of filters.
- - Request data related to the data that matches your filters. In the example above we could request all transactions that contain matching logs, or even all traces of such transactions.
+
+- Get data on logs, transactions, traces and storage state diffs.
+- Ensure that you only get the data you need by using a rich palette of filters.
+- Request data related to the data that matches your filters. In the example above we could request all transactions that contain matching logs, or even all traces of such transactions.
 
 Data will be updated in real time and include unfinalized blocks, enabling latencies of 1-2 s. Just omit the `toBlock` field in the request and you'll get the latest data.
 
@@ -52,9 +81,9 @@ This somewhat idealized picture omits some details:
    <Expandable title="unfinalized blocks streaming instructions">
 
    Since the API sends the blocks before it can ascertain that they are final, it will occasionally stream blocks that end up being [orphaned](https://academy.binance.com/en/glossary/orphan-block). The client must detect such situations and process them according to its business logic. For example
+
    - if the data is simply written to the memory it may be necessary to overwrite it;
    - if the data is transformed and the results are used to populate a database, it may be necessary to roll back the database state changes made due to orphan blocks and re-run the transform on final blocks, etc.
-
 
    To be able to detect and correctly process orphan blocks the client must
 
@@ -65,6 +94,7 @@ This somewhat idealized picture omits some details:
    **C.** Supply the `parentBlockHash` request field when resuming the stream after termination.
 
    **D.** Expect HTTP 409 (Conflict) responses from the API. These occur when the server detects that the first block of the request does not exist in the current consensus / is an orphan. The response contains a list of blocks preceeding the one that was requested:
+
    ```json
    {
      "previousBlocks": [
@@ -83,6 +113,7 @@ This somewhat idealized picture omits some details:
      ]
    }
    ```
+
    The client must use this response and its block hash backlog to find the latest consensus block it received. If no such block is found it can send another POST request with the earliest block from the current response and a wrong hash (e.g. the one from the backlog): an HTTP 409 response from the API will contain even earlier blocks that might match those found in the backlog. This process can be repeated until the backlog is exhausted.
 
    Once the client finds a non-orphaned block it should restart the business logic and resume the stream at its height.
@@ -91,8 +122,8 @@ This somewhat idealized picture omits some details:
 
 ## Other endpoints
 
-* [GET /metadata](/api-reference/endpoint/get-metadata) - dataset metadata. Includes the number of the lowest available slot.
-* [GET /head](/api-reference/endpoint/get-head) - slot number and hash of the highest block of the dataset.
-* [GET /finalized-head](/api-reference/endpoint/get-finalized-head) - same, but only for finalized blocks. In the current implementation it will be behind `/head` by some thousands of slots.
-* [POST /finalized-stream](/api-reference/endpoint/post-finalized-stream) - same as the main endpoint [POST /stream](/api-reference/endpoint/post-stream), but will only return finalized blocks, up to the height you can get from [GET /finalized-head](/api-reference/endpoint/get-finalized-head)
-* [GET /state](/api-reference/endpoint/get-state) - information on how the dataset is distributed within the SQD Network.
+- [GET /metadata](/api-reference/endpoint/get-metadata) - dataset metadata. Includes the number of the lowest available slot.
+- [GET /head](/api-reference/endpoint/get-head) - slot number and hash of the highest block of the dataset.
+- [GET /finalized-head](/api-reference/endpoint/get-finalized-head) - same, but only for finalized blocks. In the current implementation it will be behind `/head` by some thousands of slots.
+- [POST /finalized-stream](/api-reference/endpoint/post-finalized-stream) - same as the main endpoint [POST /stream](/api-reference/endpoint/post-stream), but will only return finalized blocks, up to the height you can get from [GET /finalized-head](/api-reference/endpoint/get-finalized-head)
+- [GET /state](/api-reference/endpoint/get-state) - information on how the dataset is distributed within the SQD Network.
