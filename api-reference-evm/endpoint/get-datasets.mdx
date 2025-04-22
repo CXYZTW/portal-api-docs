@@ -1,0 +1,23 @@
+---
+openapi: "/api-reference-evm/openapi.yaml get /datasets"
+title: "GET datasets"
+---
+
+Lists the existing datasets as a JSON array. See [/metadata](/api-reference-evm/endpoint/get-metadata) endpoint for the field description.
+
+### Response Example
+
+```json
+[
+  {
+    "dataset": "ethereum-mainnet",
+    "aliases": ["eth-mainnet"],
+    "real_time": false
+  },
+  {
+    "dataset": "solana-mainnet",
+    "aliases": [],
+    "real_time": true
+  }
+]
+```

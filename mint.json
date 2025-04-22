@@ -1,0 +1,59 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "SQD Network Portal API Documentation",
+  "logo": {
+    "light": "/Symbol_dark.svg",
+    "dark": "/Symbol_light.svg"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#000000",
+    "light": "#FFFFFF",
+    "dark": "#000000",
+    "anchors": {
+      "from": "#000000",
+      "to": "#FFFFFF"
+    }
+  },
+  "theme": "prism",
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "https://t.me/HydraDevs"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Dashboard",
+    "url": "https://portal.sqd.dev"
+  },
+  "tabs": [
+    {
+      "name": "EVM API Reference",
+      "url": "api-reference-evm"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Core API",
+      "pages": [
+        "api-reference-evm/introduction",
+        "api-reference-evm/endpoint/post-stream"
+      ]
+    },
+    {
+      "group": "Aux endpoints",
+      "pages": [
+        "api-reference-evm/endpoint/get-datasets",
+        "api-reference-evm/endpoint/get-metadata",
+        "api-reference-evm/endpoint/get-head",
+        "api-reference-evm/endpoint/get-finalized-head",
+        "api-reference-evm/endpoint/post-finalized-stream",
+        "api-reference-evm/endpoint/get-state"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/sqd_dev",
+    "github": "https://github.com/subsquid"
+  }
+}
