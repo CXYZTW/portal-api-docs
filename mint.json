@@ -1,7 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "SQD Network Portal API Documentation",
-  "description": "API documentation for accessing blockchain data through the SQD Network Portal",
   "logo": {
     "light": "/Symbol_dark.svg",
     "dark": "/Symbol_light.svg"
@@ -25,42 +24,50 @@
       "href": "https://www.sqd.ai/network"
     }
   },
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "https://t.me/HydraDevs"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Powered by SQD Network",
+    "url": "https://sqd.ai/network"
+  },
   "navigation": [
     {
       "group": "Core API",
       "pages": [
         "api-reference-evm/introduction",
-        "api-reference-evm/endpoint/post-stream"
+        "api-reference-evm/endpoint/POST-stream"
       ]
     },
     {
       "group": "Aux endpoints",
       "pages": [
-        "api-reference-evm/endpoint/get-datasets",
-        "api-reference-evm/endpoint/get-metadata",
-        "api-reference-evm/endpoint/get-head",
-        "api-reference-evm/endpoint/get-finalized-head",
-        "api-reference-evm/endpoint/post-finalized-stream",
-        "api-reference-evm/endpoint/get-state"
+        "api-reference-evm/endpoint/GET-datasets",
+        "api-reference-evm/endpoint/GET-metadata",
+        "api-reference-evm/endpoint/GET-head",
+        "api-reference-evm/endpoint/GET-finalized-head",
+        "api-reference-evm/endpoint/POST-finalized-stream",
+        "api-reference-evm/endpoint/GET-state"
       ]
+    }
+  ],
+  "anchors": [
+    {
+      "name": "Website",
+      "icon": "globe",
+      "url": "https://sqd.ai"
+    },
+    {
+      "name": "Community",
+      "icon": "telegram",
+      "url": "https://t.me/hydradevs"
     }
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/hellosqd",
     "github": "https://github.com/subsquid"
-  },
-  "global": {
-      "anchors": [
-        {
-          "anchor": "Website",
-          "href": "https://soldexer.dev",
-          "icon": "globe"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://t.me/+Rx3p5SS0PMtmNzQy",
-          "icon": "telegram"
-        }
-      ]
-    }
+  }
 }
