@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "SQD Network Portal",
   "logo": {
-    "dark": "/Symbol_bl-bg.svg",
-    "light": "/Symbol_wh-bg.svg"
+    "dark": "/Symbol_wh-bg.svg",
+    "light": "/Symbol_bl-bg.svg"
   },
   "favicon": "/favicon.png",
   "colors": {
@@ -45,21 +45,21 @@
     "versions": [],
     "groups": [
       {
-      "group": "Core API",
+        "group": "Getting Started",
         "pages": [
-          "api-reference-evm/introduction",
-        "api-reference-evm/endpoint/POST-stream"
+        "api-reference-evm/introduction",
+        "api-reference-evm/endpoint/post-stream"
         ]
       },
       {
         "group": "Endpoints",
         "pages": [
-        "api-reference-evm/endpoint/GET-datasets",
-        "api-reference-evm/endpoint/GET-metadata",
-        "api-reference-evm/endpoint/GET-head",
-        "api-reference-evm/endpoint/GET-finalized-head",
-        "api-reference-evm/endpoint/POST-finalized-stream",
-        "api-reference-evm/endpoint/GET-state"
+          "api-reference-evm/endpoint/get-datasets",
+          "api-reference-evm/endpoint/get-metadata",
+          "api-reference-evm/endpoint/get-head",
+          "api-reference-evm/endpoint/get-finalized-head",
+          "api-reference-evm/endpoint/post-finalized-stream",
+          "api-reference-evm/endpoint/get-state"
         ]
       }
     ]
