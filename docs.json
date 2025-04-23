@@ -5,7 +5,7 @@
     "dark": "/Symbol_wh-bg.svg",
     "light": "/Symbol_bl-bg.svg"
   },
-  "favicon": "/Symbol_dark.svg",
+  "favicon": "/Symbol_bl-bg.svg",
   "colors": {
     "primary": "#000000",
     "light": "#FFFFFF",
