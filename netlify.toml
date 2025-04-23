@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+  command = "echo 'No build step required'"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[dev]
+  command = "echo 'No dev server'"

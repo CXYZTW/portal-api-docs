@@ -47,19 +47,19 @@
       {
         "group": "Getting Started",
         "pages": [
-        "api-reference-evm/introduction",
-        "api-reference-evm/endpoint/post-stream"
+        "api/introduction",
+        "api/endpoint/post-stream"
         ]
       },
       {
         "group": "Endpoints",
         "pages": [
-          "api-reference-evm/endpoint/get-datasets",
-          "api-reference-evm/endpoint/get-metadata",
-          "api-reference-evm/endpoint/get-head",
-          "api-reference-evm/endpoint/get-finalized-head",
-          "api-reference-evm/endpoint/post-finalized-stream",
-          "api-reference-evm/endpoint/get-state"
+          "api/endpoint/get-datasets",
+          "api/endpoint/get-metadata",
+          "api/endpoint/get-head",
+          "api/endpoint/get-finalized-head",
+          "api/endpoint/post-finalized-stream",
+          "api/endpoint/get-state"
         ]
       }
     ]

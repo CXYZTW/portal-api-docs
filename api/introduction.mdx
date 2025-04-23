@@ -6,7 +6,7 @@ The SQD Network Portal API provides access to various blockchain datasets. Each 
 
 ## Getting Started
 
-1. First, list available datasets using the [GET /datasets](/api-reference-evm/endpoint/get-datasets) endpoint:
+1. First, list available datasets using the [GET /datasets](/api/endpoint/get-datasets) endpoint:
 
 ```bash
 curl https://portal.sqd.dev/datasets
@@ -26,7 +26,7 @@ curl https://portal.sqd.dev/datasets/base-mainnet/head
 
 ## Data Streaming
 
-Request the data you need by [POSTing to `/stream`](/api-reference-evm/endpoint/post-stream) and you shall receive a stream of newline-separated JSON objects that package your data by block. For example
+Request the data you need by [POSTing to `/stream`](/api/endpoint/post-stream) and you shall receive a stream of newline-separated JSON objects that package your data by block. For example
 
 ```bash
 curl https://portal.sqd.dev/datasets/ethereum-mainnet/stream \
@@ -76,7 +76,7 @@ This somewhat idealized picture omits some details:
 
    If the range of your request is entirely above the range of available blocks you'll get an HTTP 204 (No Content).
 
-2. Ensuring data correctness when streaming unfinalized blocks is somewhat complicated. If you don't want to deal with that complexity and don't mind that the newest available data is up to several hours old, use the alternative [`/finalized-stream` endpoint](/api-reference/endpoint/post-finalized-stream); otherwise read on.
+2. Ensuring data correctness when streaming unfinalized blocks is somewhat complicated. If you don't want to deal with that complexity and don't mind that the newest available data is up to several hours old, use the alternative [`/finalized-stream` endpoint](/api/endpoint/post-finalized-stream); otherwise read on.
 
    <Expandable title="unfinalized blocks streaming instructions">
 
@@ -122,8 +122,8 @@ This somewhat idealized picture omits some details:
 
 ## Other endpoints
 
-- [GET /metadata](/api-reference/endpoint/get-metadata) - dataset metadata. Includes the number of the lowest available slot.
-- [GET /head](/api-reference/endpoint/get-head) - slot number and hash of the highest block of the dataset.
-- [GET /finalized-head](/api-reference/endpoint/get-finalized-head) - same, but only for finalized blocks. In the current implementation it will be behind `/head` by some thousands of slots.
-- [POST /finalized-stream](/api-reference/endpoint/post-finalized-stream) - same as the main endpoint [POST /stream](/api-reference/endpoint/post-stream), but will only return finalized blocks, up to the height you can get from [GET /finalized-head](/api-reference/endpoint/get-finalized-head)
-- [GET /state](/api-reference/endpoint/get-state) - information on how the dataset is distributed within the SQD Network.
+- [GET /metadata](/api/endpoint/get-metadata) - dataset metadata. Includes the number of the lowest available slot.
+- [GET /head](/api/endpoint/get-head) - slot number and hash of the highest block of the dataset.
+- [GET /finalized-head](/api/endpoint/get-finalized-head) - same, but only for finalized blocks. In the current implementation it will be behind `/head` by some thousands of slots.
+- [POST /finalized-stream](/api/endpoint/post-finalized-stream) - same as the main endpoint [POST /stream](/api/endpoint/post-stream), but will only return finalized blocks, up to the height you can get from [GET /finalized-head](/api/endpoint/get-finalized-head)
+- [GET /state](/api/endpoint/get-state) - information on how the dataset is distributed within the SQD Network.
