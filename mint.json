@@ -26,13 +26,18 @@
   },
   "topbarLinks": [
     {
+      "name": "Website",
+      "url": "https://sqd.ai"
+    }
+  ,
+    {
       "name": "Support",
       "url": "https://t.me/HydraDevs"
     }
   ],
   "topbarCtaButton": {
     "name": "Powered by SQD Network",
-    "url": "https://sqd.ai/network"
+    "url": "https://network.subsquid.io"
   },
   "navigation": [
     {
@@ -52,18 +57,6 @@
         "api-reference-evm/endpoint/POST-finalized-stream",
         "api-reference-evm/endpoint/GET-state"
       ]
-    }
-  ],
-  "anchors": [
-    {
-      "name": "Website",
-      "icon": "globe",
-      "url": "https://sqd.ai"
-    },
-    {
-      "name": "Community",
-      "icon": "telegram",
-      "url": "https://t.me/hydradevs"
     }
   ],
   "footerSocials": {

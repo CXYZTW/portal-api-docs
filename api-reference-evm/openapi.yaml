@@ -96,6 +96,22 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DataQuery'
+            example:
+              type: "evm"
+              fromBlock: 20494139
+              toBlock: 20494161
+              fields:
+                transaction:
+                  hash: true
+                  from: true
+                  to: true
+                  value: true
+                  gasUsed: true
+                block:
+                  number: true
+              transactions:
+                - from: ["0xef02db3C7D50Afb150511EcB2C54EE854397bD18"]
+                - to: ["0xef02db3C7D50Afb150511EcB2C54EE854397bD18"]
       responses:
         '200':
           description: A stream of blocks in JSON lines format, optionally gzipped. Can be empty if the data query has a bounded range and all blocks in the range have been skipped. May include X-Sqd-Finalized-Head-Number and X-Sqd-Finalized-Head-Hash headers, indicating the latest finalized block that's on the same chain as the returned blocks.
@@ -112,11 +128,18 @@ paths:
               description: Hash of the latest finalized block. All returned blocks are guaranteed to belong to the same (not necessarily final) chain as this block.
               required: false
           content:
-            application/json:
+            application/x-ndjson:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Block'
+                $ref: '#/components/schemas/Block'
+              example:
+                header:
+                  number: 20494140
+                transactions:
+                  - hash: "0x1234567890abcdef..."
+                    from: "0xef02db3C7D50Afb150511EcB2C54EE854397bD18"
+                    to: "0x1234567890abcdef..."
+                    value: "1000000000000000000"
+                    gasUsed: 21000
         '204':
           description: Indicates that the requested block range is entirely above the range of blocks available in the dataset. The portal may wait for up to 5s before returning this.
           content:
@@ -139,9 +162,19 @@ paths:
           description: >
             Possible causes: (1) request headers or body encoding are incorrect; (2) the query is invalid - the response will include an explanation; (3) fromBlock is below the dataset's start_block (see /metadata).
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  code:
+                    type: integer
+                    description: Error code
+                  retry:
+                    type: integer
+                    description: Seconds to wait before retrying
         '404':
           description: Dataset not found
           content:

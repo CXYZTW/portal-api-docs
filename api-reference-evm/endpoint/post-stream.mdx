@@ -1,3 +1,93 @@
 ---
 openapi: "/api-reference-evm/openapi.yaml post /stream"
+title: "POST /stream"
+api: "POST /stream"
+description: "Stream data from the dataset based on the provided query."
 ---
+
+The `/stream` endpoint allows you to query and stream data from a specific dataset. By default, it uses the Ethereum Mainnet dataset, but you can switch to any other dataset by changing the URL path.
+
+### Example: Track Vitalik's Wallet Transactions
+
+```bash
+curl -X POST "https://portal.sqd.dev/datasets/ethereum-mainnet/stream" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "evm",
+    "fromBlock": 20494139,
+    "toBlock": 20494161,
+    "fields": {
+      "transaction": {
+        "hash": true,
+        "from": true,
+        "to": true,
+        "value": true,
+        "gasUsed": true
+      },
+      "block": {
+        "number": true
+      }
+    },
+    "transactions": [
+      {
+        "from": ["0xef02db3C7D50Afb150511EcB2C54EE854397bD18"]
+      },
+      {
+        "to": ["0xef02db3C7D50Afb150511EcB2C54EE854397bD18"]
+      }
+    ]
+  }'
+```
+
+This query will:
+- Track transactions from blocks 20494139 to 20494161
+- Get transactions where Vitalik's wallet (0xef02db3C7D50Afb150511EcB2C54EE854397bD18) is either the sender or receiver
+- Return transaction details like hash, from, to, value, and gas used
+- Include block numbers for each transaction
+
+### Request Body
+
+<ParamField body="type" type="string" required>
+  Must be "evm" for EVM datasets
+</ParamField>
+
+<ParamField body="fromBlock" type="integer" required>
+  Starting block number (inclusive)
+</ParamField>
+
+<ParamField body="toBlock" type="integer">
+  Ending block number (inclusive). If not specified, streams indefinitely
+</ParamField>
+
+<ParamField body="fields" type="object" required>
+  Fields to include in the response. Each field is a boolean indicating whether to include it
+</ParamField>
+
+<ParamField body="transactions" type="array">
+  Array of transaction filters. Each filter is an object with `from` and/or `to` arrays of addresses
+</ParamField>
+
+### Response
+
+Returns a stream of newline-separated JSON objects, each representing a block with the requested data. The response may be gzipped if the client accepts it.
+
+```json
+{
+  "header": {
+    "number": 20494140
+  },
+  "transactions": [
+    {
+      "hash": "0x...",
+      "from": "0xef02db3C7D50Afb150511EcB2C54EE854397bD18",
+      "to": "0x...",
+      "value": "1000000000000000000",
+      "gasUsed": 21000
+    }
+  ]
+}
+```
+
+<Note>
+  The stream will continue until all requested blocks are processed or until the connection is closed.
+</Note>
