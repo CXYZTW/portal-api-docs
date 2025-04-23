@@ -36,10 +36,6 @@
     "name": "",
     "url": ""
   },
-  "feedback": {
-    "suggestEdit": true,
-    "raiseIssue": true
-  },
   "navigation": {
     "languages": [],
     "versions": [],
@@ -48,7 +44,7 @@
       "group": "Core API",
         "pages": [
           "api-reference-evm/introduction",
-        "api-reference-evm/endpoint/POST-stream"
+          "api-reference-evm/endpoint/POST-stream"
         ]
       },
       {
