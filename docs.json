@@ -2,16 +2,16 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "SQD Network Portal",
   "logo": {
-    "dark": "/Symbol_light.svg",
-    "light": "/Symbol_dark.svg"
+    "dark": "/Symbol_bl-bg.svg",
+    "light": "/Symbol_wh-bg.svg"
   },
-  "favicon": "/Symbol_dark.svg",
+  "favicon": "/favicon.png",
   "colors": {
     "primary": "#000000",
     "light": "#FFFFFF",
     "dark": "#000000"
   },
-  "theme": "maple",
+  "theme": "mint",
   "navbar": {
     "links": [
       {
@@ -36,6 +36,10 @@
     "name": "",
     "url": ""
   },
+  "feedback": {
+    "suggestEdit": true,
+    "raiseIssue": true
+  },
   "navigation": {
     "languages": [],
     "versions": [],
@@ -44,7 +48,7 @@
       "group": "Core API",
         "pages": [
           "api-reference-evm/introduction",
-          "api-reference-evm/endpoint/POST-stream"
+        "api-reference-evm/endpoint/POST-stream"
         ]
       },
       {
