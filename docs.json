@@ -43,7 +43,7 @@
       {
         "group": "Getting Started",
         "pages": [
-          "api/endpoint/introduction",
+          "api/introduction",
           "api/endpoint/post-stream"
         ]
       },
