@@ -1,0 +1,75 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "SQD Network Portal",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#0D9373",
+    "light": "#07C983",
+    "dark": "#0D9373",
+    "background": {
+      "dark": "#090014"
+    }
+  },
+  "theme": "mint",
+  "navbar": {
+    "links": [
+      {
+        "type": "link",
+        "label": "Website",
+        "href": "https://sqd.ai"
+      },
+      {
+        "type": "link",
+        "label": "Support",
+        "href": "https://t.me/HydraDevs"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Powered by SQD Network",
+      "href": "https://network.subsquid.io"
+    }
+  },
+  "topbarLinks": [],
+  "topbarCtaButton": {
+    "name": "",
+    "url": ""
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "name": "Core API",
+        "icon": "code",
+        "items": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "api-reference-evm/introduction",
+              "api-reference-evm/authentication"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "api-reference-evm/endpoint/get-datasets",
+              "api-reference-evm/endpoint/get-metadata",
+              "api-reference-evm/endpoint/get-state",
+              "api-reference-evm/endpoint/post-stream",
+              "api-reference-evm/endpoint/post-finalized-stream",
+              "api-reference-evm/endpoint/get-head",
+              "api-reference-evm/endpoint/get-finalized-head"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footerSocials": {
+    "twitter": "https://twitter.com/hellosqd",
+    "github": "https://github.com/subsquid"
+  }
+}
